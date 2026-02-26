@@ -1,0 +1,1 @@
+/home/jocampo/.config/omarchy/current/theme/neovim.lua
