@@ -1,12 +1,64 @@
 return {
   {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    opts = {
+      opts = {
+        log_level = "DEBUG",
+      },
+    },
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    config = function()
+      require("codecompanion").setup({
+        rules = {
+          default = {
+            files = {
+              "AGENT.md",
+            },
+          },
+        },
+        adapters = {
+          http = {
+            openai = function()
+              return require("codecompanion.adapters").extend("openai", {
+                env = {
+                  api_key = "",
+                },
+              })
+            end,
+          },
+        },
+
+        strategies = {
+          chat = {
+            adapter = "openai",
+            model = "gpt-4.1-mini",
+          },
+          inline = {
+            adapter = "openai",
+            model = "gpt-4.1-mini",
+          },
+        },
+
+        opts = {
+          log_level = "DEBUG",
+        },
+      })
+    end,
+  },
+  {
     "windwp/nvim-ts-autotag",
     config = function()
       require("nvim-ts-autotag").setup({
         opts = {
           enable_close = true,
           enable_rename = true,
-          enable_close_on_slash = false
+          enable_close_on_slash = false,
         },
         filetypes = {
           "html",
@@ -15,7 +67,7 @@ return {
           "svelte",
           "php",
           "htmldjango",
-          "astro"
+          "astro",
         },
       })
     end,
@@ -105,7 +157,7 @@ return {
         "javascript",
         "typescript",
         "php",
-        "svelte"
+        "svelte",
       },
     },
   },

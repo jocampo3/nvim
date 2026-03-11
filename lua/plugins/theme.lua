@@ -1,1 +1,10 @@
-/home/jocampo/.config/omarchy/current/theme/neovim.lua
+return {
+  { "neanias/everforest-nvim" },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "everforest",
+      background = "soft",
+    },
+  },
+}
